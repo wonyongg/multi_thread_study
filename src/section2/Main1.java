@@ -23,3 +23,5 @@ public class Main1 {
         Thread.sleep(1000);
     }
 }
+
+// main 스레드와는 별개로 별도의 thread를 생성하여 비동기적으로 수행함을 확인

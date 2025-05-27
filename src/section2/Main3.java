@@ -4,6 +4,7 @@ public class Main3 {
 
     public static void main(String[] args) {
 
+        // Runnable을 이용한 스레드 생성 방식으로 ,Runnable 객체를 Thread에 전달
         /*
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -26,3 +27,5 @@ public class Main3 {
         }
     }
 }
+
+// Thread 클래스를 상속하여 새로운 스레드를 정의하고 실행하는 방법을 실습한 코드
