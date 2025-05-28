@@ -11,6 +11,7 @@ public class Main4 {
 
         Random random = new Random();
 
+        // 0부터 MAX_PASSWORD -1까지 랜덤 금고 비밀번호 설정
         Vault vault = new Vault(random.nextInt(MAX_PASSWORD));
 
         List<Thread> threads = new ArrayList<>();
@@ -30,6 +31,7 @@ public class Main4 {
     private static class Vault {
         private int password;
         public Vault(int password) {
+            System.out.println("Vault password: " + password);
             this.password = password;
         }
 
@@ -44,6 +46,9 @@ public class Main4 {
         }
     }
 
+    /**
+     * 해커 스레드 추상 클래스
+     */
     private static abstract class HackerThead extends Thread {
         protected Vault vault;
 
@@ -60,6 +65,9 @@ public class Main4 {
         }
     }
 
+    /**
+     * 0부터 오름차순으로 비밀번호를 해킹하는 해커 스레드
+     */
     private static class AscendingHackerThead extends HackerThead {
         public AscendingHackerThead(Vault vault) {
             super(vault);
@@ -70,11 +78,15 @@ public class Main4 {
             for (int guess = 0; guess < MAX_PASSWORD; guess++) {
                 if (vault.isCorrectPassword(guess)) {
                     System.out.println(this.getName() + " guessed the password : " + guess);
+                    System.exit(0); // 정답시 프로그램 종료
                 }
             }
         }
     }
 
+    /**
+     * 9999부터 내림차순으로 비밀번호를 해킹하는 해커 스레드
+     */
     private static class DescendingHackerThead extends HackerThead {
         public DescendingHackerThead(Vault vault) {
             super(vault);
@@ -85,12 +97,15 @@ public class Main4 {
             for (int guess = MAX_PASSWORD - 1; guess > 0; guess--) {
                 if (vault.isCorrectPassword(guess)) {
                     System.out.println(this.getName() + " guessed the password : " + guess);
-                    System.exit(0);
+                    System.exit(0); // 정답시 프로그램 종료
                 }
             }
         }
     }
 
+    /**
+     * 경찰 스레드 클래스
+     */
     private static class PoliceThead extends Thread {
         @Override
         public void run() {
