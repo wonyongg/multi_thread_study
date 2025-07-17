@@ -9,6 +9,8 @@ public class Main3 {
         Thread thread = new Thread(new LongComputationTask(new BigInteger("200000"), new BigInteger("10000000")));
 
         // Daemon 스레드를 true로 함으로써 메인 스레드가 끝나면 애플리케이션을 종료시킴.
+        // Daemon 스레드란, 백그라운드에서 돌아가는 보조적인 스레드로
+        // 메인 작업이 끝났을 때, 백그라운드 작업도 자동으로 종료되길 바랄 때 사용.
         thread.setDaemon(true);
         thread.start();
 
